@@ -44,6 +44,7 @@ function publish(options) {
 
     function onEnd(err) {
       if (!err) {
+        gutil.log(gutil.colors.green("[Uploaded] "), key);
         distFiles.push(key);
         cb();
       } else {
@@ -62,9 +63,6 @@ function publish(options) {
     gutil.log('OSS publish finished,  %s files published', gutil.colors.cyan.underline(distFiles.length));
     gutil.log('dist bucket: %s', gutil.colors.cyan(oss.bucket));
     gutil.log('dist root: %s', gutil.colors.cyan(keyBase || '[empty]'));
-    distFiles.forEach(function (key) {
-      gutil.log('file: %s', key);
-    });
     cb();
   });
 }
